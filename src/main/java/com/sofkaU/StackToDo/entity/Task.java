@@ -1,14 +1,13 @@
-package com.sofkaU.relationalDBTodo.entity;
+package com.sofkaU.StackToDo.entity;
 
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity(name = "Task")
-@Table(name = "task")
+@Table(name = "Task")
 @Data
 public class Task {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -17,5 +16,6 @@ public class Task {
 
     private Boolean done;
 
-    private Long fkListId;
+    private Long fkTitleId;
+
 }

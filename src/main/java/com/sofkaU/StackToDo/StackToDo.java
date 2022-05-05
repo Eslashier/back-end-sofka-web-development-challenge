@@ -1,13 +1,13 @@
-package com.sofkaU.relationalDBTodo;
+package com.sofkaU.StackToDo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RelationalDbTodoApplication {
+public class StackToDo {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RelationalDbTodoApplication.class, args);
+		SpringApplication.run(StackToDo.class, args);
 	}
 
 }

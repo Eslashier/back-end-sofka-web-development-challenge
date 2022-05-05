@@ -1,33 +1,31 @@
-package com.sofkaU.relationalDBTodo.entity;
+package com.sofkaU.StackToDo.entity;
 
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
-@Entity(name = "List")
-@Table(name = "list")
+@Entity(name = "Title")
+@Table(name = "Title")
 @Data
-public class List {
+public class Title {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String listName;
+    private String name;
 
     @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
+    private List<Task> tasks = new ArrayList<>();
 
-    private java.util.List<Task> tasks = new ArrayList<>();
-
-    public List addToDoTask(Task task){
+    public Title addTask(Task task){
         this.tasks.add(task);
 
         return this;
     }
-
-
 }
