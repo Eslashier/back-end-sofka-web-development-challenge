@@ -9,13 +9,15 @@ public interface TitleService {
 
     List<Title> getTitles();
 
-    Title saveTitle(Title title);
+    Title createTitle(Title title);
 
-    void deleteTitle(Title title);
+    void deleteTitle(Long id);
 
-    Title saveTask(Task task);
+    Title createTask(Task task);
 
-    void deleteTask(Task task);
+    Title updateTask(Task task);
+
+    void deleteTask(Long id);
 
 
 

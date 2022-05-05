@@ -24,22 +24,18 @@ public class TitleServiceImplement implements TitleService{
     }
 
     @Override
-    public Title saveTitle(Title title) {
+    public Title createTitle(Title title) {
         return titleRepository.save(title);
     }
 
     @Override
-    public void deleteTitle(Title title) {
-        Title titleToDelete = titleRepository.findById(title.getId()).get();
-        if(titleToDelete.getTasks().size() >= 0){
-            titleToDelete.getTasks().forEach(task -> taskRepository.deleteById(task.getId()));
-        }
-        titleRepository.deleteById(title.getId());
+    public void deleteTitle(Long id) {
+        titleRepository.deleteById(id);
     }
 
 
     @Override
-    public Title saveTask(Task task) {
+    public Title createTask(Task task) {
         Title title = titleRepository.findById(task.getFkTitleId()).get();
         title.addTask(task);
         taskRepository.save(task);
@@ -47,10 +43,15 @@ public class TitleServiceImplement implements TitleService{
     }
 
     @Override
-    public void deleteTask(Task task) {
-        taskRepository.deleteById(task.getId());
+    public Title updateTask(Task task) {
+        Title titleToUpdate = titleRepository.findById(task.getFkTitleId()).get();
+        taskRepository.save(task);
+        return titleRepository.save(titleToUpdate);
     }
 
-
+    @Override
+    public void deleteTask(Long id) {
+        taskRepository.deleteById(id);
+    }
 
 }
