@@ -1,5 +1,6 @@
 package com.sofkaU.StackToDo.service;
 
+import com.sofkaU.StackToDo.entity.Task;
 import com.sofkaU.StackToDo.entity.Title;
 import com.sofkaU.StackToDo.repository.TitleRepository;
 import com.sofkaU.StackToDo.repository.TaskRepository;
@@ -28,8 +29,28 @@ public class TitleServiceImplement implements TitleService{
     }
 
     @Override
-    public void deleteTitle(Long id) {
-        titleRepository.deleteById(id);
+    public void deleteTitle(Title title) {
+        Title titleToDelete = titleRepository.findById(title.getId()).get();
+        if(titleToDelete.getTasks().size() >= 0){
+            titleToDelete.getTasks().forEach(task -> taskRepository.deleteById(task.getId()));
+        }
+        titleRepository.deleteById(title.getId());
     }
+
+
+    @Override
+    public Title saveTask(Task task) {
+        Title title = titleRepository.findById(task.getFkTitleId()).get();
+        title.addTask(task);
+        taskRepository.save(task);
+        return titleRepository.save(title);
+    }
+
+    @Override
+    public void deleteTask(Task task) {
+        taskRepository.deleteById(task.getId());
+    }
+
+
 
 }
