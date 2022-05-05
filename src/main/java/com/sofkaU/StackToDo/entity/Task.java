@@ -1,8 +1,10 @@
 package com.sofkaU.StackToDo.entity;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity(name = "Task")
 @Table(name = "Task")
@@ -12,6 +14,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank
     private String taskToDo;
 
     private Boolean done;

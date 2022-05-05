@@ -1,9 +1,12 @@
 package com.sofkaU.StackToDo.controller;
 
+import com.sofkaU.StackToDo.dto.TasksDTO;
 import com.sofkaU.StackToDo.entity.Task;
 import com.sofkaU.StackToDo.entity.Title;
 import com.sofkaU.StackToDo.service.TitleService;
+import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +22,11 @@ public class Controller {
     public List<Title> getAllTitles(){
         return service.getTitles();
     }
+    @GetMapping("get/titles-and-tasks")
+    public List<TasksDTO> getAllTasks(){
+        return service.getAllTasks();
+    }
+
 
     @PostMapping("create/titles")
     public Title createTitle(@RequestBody Title title){

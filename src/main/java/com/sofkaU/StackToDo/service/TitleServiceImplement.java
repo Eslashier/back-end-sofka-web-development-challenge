@@ -1,5 +1,6 @@
 package com.sofkaU.StackToDo.service;
 
+import com.sofkaU.StackToDo.dto.TasksDTO;
 import com.sofkaU.StackToDo.entity.Task;
 import com.sofkaU.StackToDo.entity.Title;
 import com.sofkaU.StackToDo.repository.TitleRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TitleServiceImplement implements TitleService{
@@ -21,6 +23,22 @@ public class TitleServiceImplement implements TitleService{
     @Override
     public List<Title> getTitles() {
         return titleRepository.findAll();
+    }
+
+    @Override
+    public List<TasksDTO> getAllTasks() {
+        return titleRepository.findAll()
+                .stream()
+                .map(this::convertEntityToDto)
+                .collect(Collectors.toList());
+    }
+
+    private TasksDTO convertEntityToDto(Title title){
+        TasksDTO tasksDTO = new TasksDTO();
+        tasksDTO.setListId(title.getId());
+        tasksDTO.setListName(title.getName());
+        tasksDTO.setTask(title.getTasks());
+        return tasksDTO;
     }
 
     @Override
