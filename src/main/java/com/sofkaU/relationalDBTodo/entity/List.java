@@ -4,12 +4,11 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
 
-@Entity(name = "ToDoList")
-@Table(name = "toDoList")
+@Entity(name = "List")
+@Table(name = "list")
 @Data
-public class ToDoList {
+public class List {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,10 +21,10 @@ public class ToDoList {
             fetch = FetchType.EAGER
     )
 
-    private List<ToDoTask> todoTasks = new ArrayList<>();
+    private java.util.List<Task> tasks = new ArrayList<>();
 
-    public ToDoList addToDoTask(ToDoTask toDoTask){
-        this.todoTasks.add(toDoTask);
+    public List addToDoTask(Task task){
+        this.tasks.add(task);
 
         return this;
     }

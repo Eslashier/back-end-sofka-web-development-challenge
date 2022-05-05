@@ -4,10 +4,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity(name = "ToDoTask")
-@Table(name = "toDoTask")
+@Entity(name = "Task")
+@Table(name = "task")
 @Data
-public class ToDoTask {
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,5 +17,5 @@ public class ToDoTask {
 
     private Boolean done;
 
-    private Long fkToDoListId;
+    private Long fkListId;
 }
