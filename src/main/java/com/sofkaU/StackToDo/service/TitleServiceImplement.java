@@ -80,7 +80,11 @@ public class TitleServiceImplement implements TitleService{
 
     @Override
     public Title updateTask(TasksDTO tasksDTO) {
-        return null;
+        Task updatedTask = new Task();
+        updatedTask = convertDTOToTask(tasksDTO);
+        Title title = titleRepository.findById(updatedTask.getFkTitleId()).get();
+        taskRepository.save(updatedTask);
+        return titleRepository.save(title);
     }
 
     @Override

@@ -34,11 +34,10 @@ public class Controller {
     public Title createTask(@Valid @RequestBody TasksDTO tasksDTO){
         return service.createTask(tasksDTO);
     }
-//
-//    @PutMapping("update/task")
-//    public Title updateTask(@Valid @RequestBody Task task){
-//        return service.updateTask(task);
-//    }
+    @PutMapping("update/task")
+    public Title updateTask(@Valid @RequestBody TasksDTO tasksDTO){
+        return service.updateTask(tasksDTO);
+    }
 
     @DeleteMapping("delete/title/{id}")
     public void deleteTitle(@PathVariable Long id){
