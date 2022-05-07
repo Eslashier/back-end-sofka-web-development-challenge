@@ -1,17 +1,18 @@
 package com.sofkaU.StackToDo.controller;
 
 import com.sofkaU.StackToDo.dto.TasksDTO;
+import com.sofkaU.StackToDo.dto.TitleDTO;
 import com.sofkaU.StackToDo.entity.Task;
 import com.sofkaU.StackToDo.entity.Title;
 import com.sofkaU.StackToDo.service.TitleService;
-import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/")
 public class Controller {
 
@@ -23,23 +24,22 @@ public class Controller {
         return service.getTitles();
     }
     @GetMapping("get/titles-and-tasks")
-    public List<TasksDTO> getAllTasks(){
+    public List<TitleDTO> getAllTasks(){
         return service.getAllTasks();
     }
 
-
     @PostMapping("create/titles")
-    public Title createTitle(@RequestBody Title title){
+    public Title createTitle(@Valid @RequestBody Title title){
         return service.createTitle(title);
     }
 
     @PostMapping("create/tasks")
-    public Title createTask(@RequestBody Task task){
+    public Title createTask(@Valid @RequestBody Task task){
         return service.createTask(task);
     }
 
     @PutMapping("update/task")
-    public Title updateTask(@RequestBody Task task){
+    public Title updateTask(@Valid @RequestBody Task task){
         return service.updateTask(task);
     }
 

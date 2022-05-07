@@ -1,6 +1,7 @@
 package com.sofkaU.StackToDo.service;
 
 import com.sofkaU.StackToDo.dto.TasksDTO;
+import com.sofkaU.StackToDo.dto.TitleDTO;
 import com.sofkaU.StackToDo.entity.Task;
 import com.sofkaU.StackToDo.entity.Title;
 import com.sofkaU.StackToDo.repository.TitleRepository;
@@ -26,19 +27,19 @@ public class TitleServiceImplement implements TitleService{
     }
 
     @Override
-    public List<TasksDTO> getAllTasks() {
+    public List<TitleDTO> getAllTasks() {
         return titleRepository.findAll()
                 .stream()
                 .map(this::convertEntityToDto)
                 .collect(Collectors.toList());
     }
 
-    private TasksDTO convertEntityToDto(Title title){
-        TasksDTO tasksDTO = new TasksDTO();
-        tasksDTO.setListId(title.getId());
-        tasksDTO.setListName(title.getName());
-        tasksDTO.setTask(title.getTasks());
-        return tasksDTO;
+    private TitleDTO convertEntityToDto(Title title){
+        TitleDTO titlesDTO = new TitleDTO();
+        titlesDTO.setId(title.getId());
+        titlesDTO.setName(title.getName());
+        titlesDTO.setTodo(title.getTasks());
+        return titlesDTO;
     }
 
     @Override
