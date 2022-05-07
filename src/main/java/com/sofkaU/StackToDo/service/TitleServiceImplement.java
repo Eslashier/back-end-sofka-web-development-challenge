@@ -35,7 +35,6 @@ public class TitleServiceImplement implements TitleService{
         Title title = new Title();
         title = modelMapper.map(titleDTO, Title.class);
         return title;
-
     }
 
     private TasksDTO convertTaskToDTO(Task task){
@@ -48,7 +47,6 @@ public class TitleServiceImplement implements TitleService{
         Task task = new Task();
         task = modelMapper.map(tasksDTO, Task.class);
         return task;
-
     }
 
     @Override
@@ -59,27 +57,31 @@ public class TitleServiceImplement implements TitleService{
                 .collect(Collectors.toList());
     }
 
-
+    @Override
+    public Title createTitle(TitleDTO titleDTO) {
+        Title newTitle = new Title();
+        newTitle = convertDTOToTitle(titleDTO);
+        return titleRepository.save(newTitle);
+    }
     @Override
     public void deleteTitle(Long id) {
         titleRepository.deleteById(id);
     }
 
+    @Override
+    public Title createTask(TasksDTO tasksDTo) {
+        Task newTask = new Task();
+        newTask = convertDTOToTask(tasksDTo);
+        Title title = titleRepository.findById(newTask.getFkTitleId()).get();
+        title.addTask(newTask);
+        taskRepository.save(newTask);
+        return titleRepository.save(title);
+    }
 
-//    @Override
-//    public Title createTask(Task task) {
-//        Title title = titleRepository.findById(task.getFkTitleId()).get();
-//        title.addTask(task);
-//        taskRepository.save(task);
-//        return titleRepository.save(title);
-//    }
-
-//    @Override
-//    public Title updateTask(Task task) {
-//        Title titleToUpdate = titleRepository.findById(task.getFkTitleId()).get();
-//        taskRepository.save(task);
-//        return titleRepository.save(titleToUpdate);
-//    }
+    @Override
+    public Title updateTask(TasksDTO tasksDTO) {
+        return null;
+    }
 
     @Override
     public void deleteTask(Long id) {

@@ -15,9 +15,7 @@ public class Task {
 
     @NotBlank
     private String taskToDo;
-
     private Boolean done;
-
     private Long fkTitleId;
 
 }

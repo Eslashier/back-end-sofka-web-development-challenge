@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "Title")
@@ -23,11 +22,10 @@ public class Title {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-    private List<Task> tasks = new ArrayList<>();
+    private List<Task> todo;
 
     public Title addTask(Task task){
-        this.tasks.add(task);
-
+        this.todo.add(task);
         return this;
     }
 }

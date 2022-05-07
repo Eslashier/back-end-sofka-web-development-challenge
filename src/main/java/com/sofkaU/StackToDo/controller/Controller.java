@@ -5,6 +5,7 @@ import com.sofkaU.StackToDo.dto.TitleDTO;
 import com.sofkaU.StackToDo.entity.Task;
 import com.sofkaU.StackToDo.entity.Title;
 import com.sofkaU.StackToDo.service.TitleService;
+import com.sofkaU.StackToDo.service.TitleServiceImplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public class Controller {
 
     @Autowired
-    private TitleService service;
+    private TitleServiceImplement service;
 
     @GetMapping("get/titles")
     public List<TitleDTO> getAllTasks(){
@@ -25,19 +26,19 @@ public class Controller {
     }
 
     @PostMapping("create/titles")
-    public Title createTitle(@Valid @RequestBody Title title){
-        return service.createTitle(title);
+    public Title createTitle(@Valid @RequestBody TitleDTO titleDTO){
+        return service.createTitle(titleDTO);
     }
 
     @PostMapping("create/tasks")
-    public Title createTask(@Valid @RequestBody Task task){
-        return service.createTask(task);
+    public Title createTask(@Valid @RequestBody TasksDTO tasksDTO){
+        return service.createTask(tasksDTO);
     }
-
-    @PutMapping("update/task")
-    public Title updateTask(@Valid @RequestBody Task task){
-        return service.updateTask(task);
-    }
+//
+//    @PutMapping("update/task")
+//    public Title updateTask(@Valid @RequestBody Task task){
+//        return service.updateTask(task);
+//    }
 
     @DeleteMapping("delete/title/{id}")
     public void deleteTitle(@PathVariable Long id){

@@ -2,7 +2,6 @@ package com.sofkaU.StackToDo.service;
 
 import com.sofkaU.StackToDo.dto.TasksDTO;
 import com.sofkaU.StackToDo.dto.TitleDTO;
-import com.sofkaU.StackToDo.entity.Task;
 import com.sofkaU.StackToDo.entity.Title;
 
 import java.util.List;
