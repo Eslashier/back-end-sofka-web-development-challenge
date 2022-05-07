@@ -11,13 +11,13 @@ public interface TitleService {
 
     List<TitleDTO> getAllTasks();
 
-    Title createTitle(Title title);
+    Title createTitle(TitleDTO titleDTO);
 
     void deleteTitle(Long id);
 
-    Title createTask(Task task);
+    Title createTask(TasksDTO tasksDTo);
 
-    Title updateTask(Task task);
+    Title updateTask(TasksDTO tasksDTO);
 
     void deleteTask(Long id);
 

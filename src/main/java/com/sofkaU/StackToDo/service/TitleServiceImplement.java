@@ -6,6 +6,7 @@ import com.sofkaU.StackToDo.entity.Task;
 import com.sofkaU.StackToDo.entity.Title;
 import com.sofkaU.StackToDo.repository.TitleRepository;
 import com.sofkaU.StackToDo.repository.TaskRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,26 +22,43 @@ public class TitleServiceImplement implements TitleService{
     @Autowired
     private TaskRepository taskRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
+    private TitleDTO convertTitleToDTO(Title title){
+        TitleDTO titleDTO;
+        titleDTO = modelMapper.map(title, TitleDTO.class);
+        return titleDTO;
+    }
+
+    private Title convertDTOToTitle(TitleDTO titleDTO){
+        Title title = new Title();
+        title = modelMapper.map(titleDTO, Title.class);
+        return title;
+
+    }
+
+    private TasksDTO convertTaskToDTO(Task task){
+        TasksDTO tasksDTO;
+        tasksDTO = modelMapper.map(task, TasksDTO.class);
+        return tasksDTO;
+    }
+
+    private Task convertDTOToTask(TasksDTO tasksDTO){
+        Task task = new Task();
+        task = modelMapper.map(tasksDTO, Task.class);
+        return task;
+
+    }
+
     @Override
     public List<TitleDTO> getAllTasks() {
         return titleRepository.findAll()
                 .stream()
-                .map(this::convertEntityToDto)
+                .map(this::convertTitleToDTO)
                 .collect(Collectors.toList());
     }
 
-    private TitleDTO convertEntityToDto(Title title){
-        TitleDTO titlesDTO = new TitleDTO();
-        titlesDTO.setId(title.getId());
-        titlesDTO.setName(title.getName());
-        titlesDTO.setTodo(title.getTasks());
-        return titlesDTO;
-    }
-
-    @Override
-    public Title createTitle(Title title) {
-        return titleRepository.save(title);
-    }
 
     @Override
     public void deleteTitle(Long id) {
@@ -48,20 +66,20 @@ public class TitleServiceImplement implements TitleService{
     }
 
 
-    @Override
-    public Title createTask(Task task) {
-        Title title = titleRepository.findById(task.getFkTitleId()).get();
-        title.addTask(task);
-        taskRepository.save(task);
-        return titleRepository.save(title);
-    }
+//    @Override
+//    public Title createTask(Task task) {
+//        Title title = titleRepository.findById(task.getFkTitleId()).get();
+//        title.addTask(task);
+//        taskRepository.save(task);
+//        return titleRepository.save(title);
+//    }
 
-    @Override
-    public Title updateTask(Task task) {
-        Title titleToUpdate = titleRepository.findById(task.getFkTitleId()).get();
-        taskRepository.save(task);
-        return titleRepository.save(titleToUpdate);
-    }
+//    @Override
+//    public Title updateTask(Task task) {
+//        Title titleToUpdate = titleRepository.findById(task.getFkTitleId()).get();
+//        taskRepository.save(task);
+//        return titleRepository.save(titleToUpdate);
+//    }
 
     @Override
     public void deleteTask(Long id) {
