@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface TitleService {
 
-    List<Title> getTitles();
-
     List<TitleDTO> getAllTasks();
 
     Title createTitle(Title title);

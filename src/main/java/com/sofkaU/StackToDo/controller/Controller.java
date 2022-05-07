@@ -20,10 +20,6 @@ public class Controller {
     private TitleService service;
 
     @GetMapping("get/titles")
-    public List<Title> getAllTitles(){
-        return service.getTitles();
-    }
-    @GetMapping("get/titles-and-tasks")
     public List<TitleDTO> getAllTasks(){
         return service.getAllTasks();
     }

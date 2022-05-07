@@ -22,11 +22,6 @@ public class TitleServiceImplement implements TitleService{
     private TaskRepository taskRepository;
 
     @Override
-    public List<Title> getTitles() {
-        return titleRepository.findAll();
-    }
-
-    @Override
     public List<TitleDTO> getAllTasks() {
         return titleRepository.findAll()
                 .stream()
