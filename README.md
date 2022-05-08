@@ -54,7 +54,6 @@ To Santiago to help us with their greats explanations videos
 
 ## Demo
 
-Insert gif or link to demo
 
 ![Alt Text](https://i.gyazo.com/1fd3d2716a725a3bbb1278ab1b9906fa.gif)
 
