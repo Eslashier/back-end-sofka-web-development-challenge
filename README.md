@@ -21,31 +21,31 @@ To Santiago to help us with their greats explanations videos
 #### Post a Category or Title
 
 ```http
-  GET /api/create/titles
+  POST /api/create/titles
 ```
 
 #### Post a Task
 
 ```http
-  GET /api/create/tasks
+  POST /api/create/tasks
 ```
 
 #### Update a Task
 
 ```http
-  GET /api/update/task
+  PUT /api/update/task
 ```
 
 #### Delete a Title
 
 ```http
-  GET /api/delete/title/${id}
+  DELETE /api/delete/title/${id}
 ```
 
 #### Delete a Task
 
 ```http
-  GET /api/delete/task/${id}
+  DELETE /api/delete/task/${id}
 ```
 
 
