@@ -63,6 +63,12 @@ Insert gif or link to demo
 
 Installing the back end
 
+-Clone the repository: https://github.com/Eslashier/back-end-sofka-web-development-challenge
+
+-Open it and wait until all the dependencies are installed
+
+-Download MySQL Workbench create a new user with a name and password that will enable you test the API
+
 -Create a MySQL Schema named "todo" or use a name you like
 
 -Modify the application.properties with your MySQL Port, Schema, username and Password
