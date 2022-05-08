@@ -62,7 +62,7 @@ Insert gif or link to demo
 
 Installing the back end
 
--Create a MySQL Schema named todo or the name you desired
+-Create a MySQL Schema named "todo" or use a name you like
 
 -Modify the application.properties with your MySQL Port, Schema, username and Password
 
